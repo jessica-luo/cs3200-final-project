@@ -1,120 +1,40 @@
-const {useState, useEffect } = React;
-const {Link} = window.ReactRouterDOM;
+import PlaylistList from "../../playlists/playlists/playlist-list";
 
-const InlineUserEditor = ({user, deleteUser, updateUser}) => {
-    const [userCopy, setUserCopy] = useState(user)
-    const [editing, setEditing] = useState(false)
-    return(
+const {useState, useEffect} = React;
+import songService, {findAllPlaylists, findAllSongs} from "../../songs/songs/song-service";
+import userService from "./user-service";
+
+const {Link, useHistory} = window.ReactRouterDOM;
+
+const InlineUserEditor = ({userId}) => {
+
+    const history = useHistory()
+    const [playlists, setPlaylists] = useState([])
+    useEffect(() => {
+        findAllPlaylists()
+    }, [])
+    const findAllPlaylists = () =>
+        userService.findAllPlaylists()
+            .then(users => setPlaylists(users))
+
+    const filteredPlaylists = playlists.filter(playlist => playlist.userId === userId)
+    return (
         <div>
-            {
-                editing &&
-                <div className="row">
-                    <div className="col">
-                        <input
-                            className="form-control"
-                            value={userCopy.firstName}
-                            onChange={(e)=>setUserCopy(userCopy => ({...userCopy, firstName: e.target.value}))}/>
-                    </div>
-                    <div className="col">
-                        <input
-                            className="form-control"
-                            value={userCopy.lastName}
-                            onChange={(e)=>setUserCopy(userCopy => ({...userCopy, lastName: e.target.value}))}/>
-                    </div>
-                    <div className="col">
-                        <input
-                            className="form-control"
-                            value={userCopy.username}
-                            onChange={(e)=>setUserCopy(userCopy => ({...userCopy, username: e.target.value}))}/>
-                    </div>
-
-                    <div className="col">
-                        <input
-                            className="form-control"
-                            value={userCopy.password}
-                            onChange={(e)=>setUserCopy(userCopy => ({...userCopy, password: e.target.value}))}/>
-                    </div>
-
-                    <div className="col">
-                        <input
-                            className="form-control"
-                            value={userCopy.email}
-                            onChange={(e)=>setUserCopy(userCopy => ({...userCopy, email: e.target.value}))}/>
-                    </div>
-
-                    <div className="col">
-                        <input
-                            className="form-control"
-                            value={userCopy.dateOfBirth}
-                            onChange={(e)=>setUserCopy(userCopy => ({...userCopy, dateOfBirth: e.target.value}))}/>
-                    </div>
-
-                    <div className="col-1">
-                        <Link to={`/users/${userCopy.id}/blogs`}>
-                            Blogs
-                        </Link>
-                    </div>
-                    <div className="col-2">
-                        <i className="fas fa-2x fa-check float-right margin-left-10px"
-                           onClick={() => {
-                               setEditing(false)
-                               updateUser(userCopy.id, userCopy)
-                           }}></i>
-                        <i className="fas fa-2x fa-undo float-right margin-left-10px"
-                           onClick={() => setEditing(false)}></i>
-                        <i className="fas fa-2x fa-trash float-right margin-left-10px"
-                           onClick={() => deleteUser(user.id)}></i>
-                    </div>
-                </div>
-            }
-            {
-                !editing &&
-                <div className="row">
-                    <div className="col">
-                        <Link to={`/users/${userCopy.id}`}>
-                            {userCopy.firstName}
-                        </Link>
-                    </div>
-                    <div className="col">
-                        <Link to={`/users/${userCopy.id}`}>
-                            {userCopy.lastName}
-                        </Link>
-                    </div>
-                    <div className="col">
-                        <Link to={`/users/${userCopy.id}`}>
-                            {userCopy.username}
-                        </Link>
-                    </div>
-
-                    <div className="col">
-                        <Link to={`/users/${userCopy.id}`}>
-                            {userCopy.password}
-                        </Link>
-                    </div>
-
-                    <div className="col">
-                        <Link to={`/users/${userCopy.id}`}>
-                            {userCopy.email}
-                        </Link>
-                    </div>
-
-                    <div className="col">
-                        <Link to={`/users/${userCopy.id}`}>
-                            {userCopy.dateOfBirth}
-                        </Link>
-                    </div>
-
-                    <div className="col-1">
-                        <Link to={`/users/${userCopy.id}/blogs`}>
-                            Blogs
-                        </Link>
-                    </div>
-                    <div className="col-2">
-                        <i className="fas fa-cog fa-2x float-right"
-                           onClick={() => setEditing(true)}></i>
-                    </div>
-                </div>
-            }
+            <ul className="list-group">
+                {
+                    filteredPlaylists.map(playlist =>
+                        <li className="list-group-item"
+                            key={playlist.id}>
+                            <a href={`/cs3200-final-project/src/main/webapp/react/playlists/index.html#/playlists/${playlist.id}`}>
+                                {playlist.id},
+                                {playlist.name},
+                                {playlist.likes},
+                                {playlist.pub.toString()},
+                                {playlist.userId}
+                            </a>
+                        </li>)
+                }
+            </ul>
         </div>
     )
 }

@@ -1,6 +1,14 @@
 // TODO: declare URL where server listens for HTTP requests
 const USERS_URL = "http://localhost:8080/api/users"
 
+// TODO: declare URL where server listens for HTTP requests
+const PLAYLISTS_URL = "http://localhost:8080/api/playlists"
+
+// TODO: retrieve all users from the server
+export const findAllPlaylists = () =>
+    fetch(PLAYLISTS_URL)
+        .then(response => response.json())
+
 // TODO: retrieve all users from the server
 export const findAllUsers = () =>
     fetch(USERS_URL)
@@ -41,5 +49,6 @@ export default {
     findUserById,
     deleteUser,
     createUser,
-    updateUser
+    updateUser,
+    findAllPlaylists
 }

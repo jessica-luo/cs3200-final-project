@@ -1,4 +1,5 @@
 import userService from "./user-service"
+import InlineUserEditor from "./inline-user-editor";
 
 const {useParams} = window.ReactRouterDOM;
 
@@ -97,7 +98,8 @@ const UserFormEditor = () => {
             </button>
 
             <br/>
-            <h2 className="mt-5">Playlists Associated With This User</h2>
+            <h2>Playlists Associated With This User</h2>
+            <InlineUserEditor userId={user.id}/>
         </div>
 
     )
