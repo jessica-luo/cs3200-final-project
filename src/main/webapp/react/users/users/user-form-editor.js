@@ -1,5 +1,6 @@
-const {useParams, useHistory} = window.ReactRouterDOM;
 import userService from "./user-service"
+
+const {useParams} = window.ReactRouterDOM;
 
 const {useState, useEffect} = React;
 
@@ -95,7 +96,10 @@ const UserFormEditor = () => {
                 Create
             </button>
 
+            <br/>
+            <h2 className="mt-5">Playlists Associated With This User</h2>
         </div>
+
     )
 }
 

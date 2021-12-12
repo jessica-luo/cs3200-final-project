@@ -66,6 +66,8 @@ const ArtistFormEditor = () => {
                 Create
             </button>
 
+            <br/>
+            <h2 className="mt-5">Albums Associated With This Artist</h2>
         </div>
     )
 }

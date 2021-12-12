@@ -86,6 +86,9 @@ const PlaylistFormEditor = () => {
                 Link to Associated User
             </a>
 
+            <br/>
+            <h2 className="mt-5">PlaylistAdds Associated With This Playlist</h2>
+
         </div>
     )
 }
