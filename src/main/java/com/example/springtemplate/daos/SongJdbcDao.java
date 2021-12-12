@@ -18,11 +18,11 @@ public class SongJdbcDao {
 
     static Connection connection = null;
     static PreparedStatement statement = null;
-    String CREATE_PLAYLIST = "INSERT INTO songs VALUES (null, ?, ?, ?, ?, ?, null, null)";
-    String FIND_ALL_PLAYLISTS = "SELECT * FROM songs";
-    String FIND_PLAYLIST_BY_ID = "SELECT * FROM songs WHERE id=?";
-    String DELETE_PLAYLIST = "DELETE FROM songs WHERE id=?";
-    String UPDATE_PLAYLIST = "UPDATE songs SET title=?, length=?, streams=?, explicit=?, album_id=? WHERE id=?";
+    String CREATE_SONG = "INSERT INTO songs VALUES (null, ?, ?, ?, ?, ?, null, null)";
+    String FIND_ALL_SONGS = "SELECT * FROM songs";
+    String FIND_SONG_BY_ID = "SELECT * FROM songs WHERE id=?";
+    String DELETE_SONG = "DELETE FROM songs WHERE id=?";
+    String UPDATE_SONG = "UPDATE songs SET title=?, length=?, streams=?, explicit=?, album_id=? WHERE id=?";
 
     private Connection getConnection() throws ClassNotFoundException, SQLException {
         Class.forName(DRIVER);
@@ -37,7 +37,7 @@ public class SongJdbcDao {
         Song song = null;
         connection = getConnection();
 
-        statement = connection.prepareStatement(FIND_PLAYLIST_BY_ID);
+        statement = connection.prepareStatement(FIND_SONG_BY_ID);
         statement.setInt(1, id);
         ResultSet resultSet = statement.executeQuery();
         if (resultSet.next()) {
@@ -58,7 +58,7 @@ public class SongJdbcDao {
         Integer rowsDeleted = 0;
         connection = getConnection();
 
-        statement = connection.prepareStatement(DELETE_PLAYLIST);
+        statement = connection.prepareStatement(DELETE_SONG);
         statement.setInt(1, songId);
         rowsDeleted = statement.executeUpdate();
 
@@ -70,7 +70,7 @@ public class SongJdbcDao {
         Integer rowsUpdated = 0;
         connection = getConnection();
 
-        statement = connection.prepareStatement(UPDATE_PLAYLIST);
+        statement = connection.prepareStatement(UPDATE_SONG);
         statement.setString(1, newSong.getTitle());
         statement.setFloat(2, newSong.getLength());
         statement.setInt(3, newSong.getStreams());
@@ -86,7 +86,7 @@ public class SongJdbcDao {
         List<Song> songs = new ArrayList<Song>();
         connection = getConnection();
 
-        statement = connection.prepareStatement(FIND_ALL_PLAYLISTS);
+        statement = connection.prepareStatement(FIND_ALL_SONGS);
         ResultSet resultSet = statement.executeQuery();
         while (resultSet.next()) {
             Song song = new Song(
@@ -108,7 +108,7 @@ public class SongJdbcDao {
         Integer rowsInserted = 0;
         connection = getConnection();
 
-        statement = connection.prepareStatement(CREATE_PLAYLIST);
+        statement = connection.prepareStatement(CREATE_SONG);
         statement.setString(1, song.getTitle());
         statement.setFloat(2, song.getLength());
         statement.setInt(3, song.getStreams());
