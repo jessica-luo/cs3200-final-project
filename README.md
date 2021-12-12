@@ -1,10 +1,10 @@
 # cs3200-final-project
 
-<img width="664" alt="Screen Shot 2021-12-05 at 10 36 36 PM" src="https://user-images.githubusercontent.com/82342205/145726177-0719a4ce-c62c-46d1-8a6a-e096402a253f.png">
+# Group 17, P3 Final Project, Group 17, December 14, 2021
 
-P3 Final Project
-Group 17     CS3200    December 14, 2021
-Ananda Francis, Hannah Lauterwasser, Jessica Luo, and Kelly Ward
+# Ananda Francis, Hannah Lauterwasser, Jessica Luo, and Kelly Ward
+
+<img width="664" alt="Screen Shot 2021-12-05 at 10 36 36 PM" src="https://user-images.githubusercontent.com/82342205/145726177-0719a4ce-c62c-46d1-8a6a-e096402a253f.png">
 
 # Project
 # Problem Statement
