@@ -1,3 +1,5 @@
+import InlinePlaylistEditor from "./inline-playlist-editor";
+
 const {useParams, useHistory} = window.ReactRouterDOM;
 import playlistService from "./playlist-service"
 
@@ -88,6 +90,7 @@ const PlaylistFormEditor = () => {
 
             <br/>
             <h2 className="mt-5">PlaylistAdds Associated With This Playlist</h2>
+            <InlinePlaylistEditor playlistId={playlist.id}/>
 
         </div>
     )
