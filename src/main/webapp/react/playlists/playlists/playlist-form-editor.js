@@ -80,6 +80,12 @@ const PlaylistFormEditor = () => {
                 Create
             </button>
 
+            <br/>
+
+            <a href={`/cs3200-final-project/src/main/webapp/react/users/index.html#/users/${playlist.userId}`}>
+                Link to Associated User
+            </a>
+
         </div>
     )
 }

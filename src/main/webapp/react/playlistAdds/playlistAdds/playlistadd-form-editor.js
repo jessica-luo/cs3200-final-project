@@ -1,4 +1,4 @@
-const {useParams, useHistory} = window.ReactRouterDOM;
+const {Link, useParams, useHistory} = window.ReactRouterDOM;
 import playlistaddService from "./playlistadd-service"
 
 const {useState, useEffect} = React;
@@ -72,6 +72,17 @@ const PlaylistaddFormEditor = () => {
                     onClick={() => createPlaylistAdd(playlistadd)}>
                 Create
             </button>
+            <br/>
+
+            <a href={`/cs3200-final-project/src/main/webapp/react/songs/index.html#/songs/${playlistadd.song_id}`}>
+                Link to Associated Song
+            </a>
+
+            <br/>
+
+            <a href={`/cs3200-final-project/src/main/webapp/react/playlists/index.html#/playlists/${playlistadd.playlist_id}`}>
+                Link to Associated Playlist
+            </a>
 
         </div>
     )

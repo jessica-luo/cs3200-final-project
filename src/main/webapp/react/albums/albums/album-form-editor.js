@@ -73,6 +73,12 @@ const AlbumFormEditor = () => {
                 Create
             </button>
 
+            <br/>
+
+            <a href={`/cs3200-final-project/src/main/webapp/react/artists/index.html#/artists/${album.artistId}`}>
+                Link to Associated Artist
+            </a>
+
         </div>
     )
 }

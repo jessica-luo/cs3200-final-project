@@ -87,6 +87,12 @@ const SongFormEditor = () => {
                 Create
             </button>
 
+            <br/>
+
+            <a href={`/cs3200-final-project/src/main/webapp/react/albums/index.html#/albums/${song.album_id}`}>
+                Link to Associated Album
+            </a>
+
         </div>
     )
 }
