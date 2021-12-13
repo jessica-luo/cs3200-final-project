@@ -1,3 +1,5 @@
+import InlineAlbumEditor from "./inline-album-editor";
+
 const {useParams, useHistory} = window.ReactRouterDOM;
 import albumService from "./album-service"
 
@@ -82,6 +84,7 @@ const AlbumFormEditor = () => {
             <br/>
             <h2 className="mt-5">Songs Associated With This Album</h2>
 
+            <InlineAlbumEditor albumId={album.id}/>
         </div>
     )
 }

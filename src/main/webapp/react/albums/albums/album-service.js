@@ -1,5 +1,10 @@
 // TODO: declare URL where server listens for HTTP requests
 const ALBUMS_URL = "http://localhost:8080/api/albums"
+const SONGS_URL = "http://localhost:8080/api/songs"
+
+export const findAllSongs = () =>
+    fetch(SONGS_URL)
+        .then(response => response.json())
 
 // TODO: retrieve all Albums from the server
 export const findAllAlbums = () =>
@@ -41,5 +46,6 @@ export default {
     findAlbumById,
     deleteAlbum,
     createAlbum,
-    updateAlbum
+    updateAlbum,
+    findAllSongs
 }
