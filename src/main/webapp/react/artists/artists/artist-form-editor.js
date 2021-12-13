@@ -1,3 +1,5 @@
+import InlineArtistEditor from "./inline-artist-editor";
+
 const {useParams, useHistory} = window.ReactRouterDOM;
 import artistService from "./artist-service"
 
@@ -68,6 +70,7 @@ const ArtistFormEditor = () => {
 
             <br/>
             <h2 className="mt-5">Albums Associated With This Artist</h2>
+            <InlineArtistEditor artistId={artist.id}/>
         </div>
     )
 }

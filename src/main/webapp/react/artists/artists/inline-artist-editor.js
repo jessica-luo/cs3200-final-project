@@ -1,74 +1,35 @@
+import artistService, {findAllAlbums} from "./artist-service";
+
 const {useState, useEffect} = React;
 const {Link} = window.ReactRouterDOM;
 
-const InlineArtistEditor = ({artist, deleteArtist, updateArtist}) => {
-    const [artistCopy, setArtistCopy] = useState(artist)
-    const [editing, setEditing] = useState(false)
+const InlineArtistEditor = ({artistId}) => {
+    const [albums, setAlbums] = useState([])
+    useEffect(() => {
+        findAllAlbums()
+    }, [])
+    const findAllAlbums = () =>
+        artistService.findAllAlbums()
+            .then(albums => setAlbums(albums))
+
+    const filteredAlbums = albums.filter(album => album.artistId === artistId)
+
     return (
         <div>
-            {
-                editing &&
-                <div className="row">
-                    <div className="col">
-                        <input
-                            className="form-control"
-                            value={artistCopy.name}
-                            onChange={(e) => setArtistCopy(artistCopy => ({...artistCopy, title: e.target.value}))}/>
-
-                        <input
-                            className="form-control"
-                            value={artistCopy.genre}
-                            onChange={(e) => setArtistCopy(artistCopy => ({...artistCopy, releaseDate: e.target.value}))}/>
-
-                    </div>
-                    <div className="col-2">
-                        <i className="fas fa-2x fa-check float-right margin-left-10px"
-                           onClick={() => {
-                               setEditing(false)
-                               updateArtist(artistCopy.id, artistCopy)
-                           }}/>
-
-                        <i className="fas fa-2x fa-check float-right margin-left-10px"
-                           onClick={() => {
-                               setEditing(false)
-                               updateArtist(artistCopy.name, artistCopy)
-                           }}/>
-
-                        <i className="fas fa-2x fa-check float-right margin-left-10px"
-                           onClick={() => {
-                               setEditing(false)
-                               updateArtist(artistCopy.genre, artistCopy)
-                           }}/>
-
-
-                        <i className="fas fa-2x fa-undo float-right margin-left-10px"
-                           onClick={() => setEditing(false)}></i>
-                        <i className="fas fa-2x fa-trash float-right margin-left-10px"
-                           onClick={() => deleteArtist(artist.id)}></i>
-                    </div>
-                </div>
-            }
-            {
-                !editing &&
-                <div className="row">
-                    <div className="col">
-                        <Link to={`/artists/${artistCopy.id}`}>
-                            {artistCopy.name}
-                        </Link>
-                    </div>
-
-                    <div className="col">
-                        <Link to={`/artists/${artistCopy.id}`}>
-                            {artistCopy.genre}
-                        </Link>
-                    </div>
-
-                    <div className="col-2">
-                        <i className="fas fa-cog fa-2x float-right"
-                           onClick={() => setEditing(true)}></i>
-                    </div>
-                </div>
-            }
+            <ul className="list-group">
+                {
+                    filteredAlbums.map(album =>
+                        <li className="list-group-item"
+                            key={album.id}>
+                            <a href={`/cs3200-final-project/src/main/webapp/react/albums/index.html#/albums/${album.id}`}>
+                                {album.id},
+                                {album.title},
+                                {album.releaseDate},
+                                {album.artistId}
+                            </a>
+                        </li>)
+                }
+            </ul>
         </div>
     )
 }

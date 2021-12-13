@@ -1,9 +1,15 @@
 // TODO: declare URL where server listens for HTTP requests
 const ALBUMS_URL = "http://localhost:8080/api/artists"
+const ALBUMS2_URL = "http://localhost:8080/api/albums"
 
 // TODO: retrieve all Artists from the server
 export const findAllArtists = () =>
     fetch(ALBUMS_URL)
+        .then(response => response.json())
+
+// TODO: retrieve all Albums from the server
+export const findAllAlbums = () =>
+    fetch(ALBUMS2_URL)
         .then(response => response.json())
 
 // TODO: retrieve a single Artist by their ID
@@ -41,5 +47,6 @@ export default {
     findArtistById,
     deleteArtist,
     createArtist,
-    updateArtist
+    updateArtist,
+    findAllAlbums
 }
