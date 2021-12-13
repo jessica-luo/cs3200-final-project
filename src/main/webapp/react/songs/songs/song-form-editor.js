@@ -1,3 +1,5 @@
+import InlineSongEditor from "./inline-song-editor";
+
 const {useParams, useHistory} = window.ReactRouterDOM;
 import songService from "./song-service"
 
@@ -96,6 +98,7 @@ const SongFormEditor = () => {
             <br/>
             <h2 className="mt-5">PlaylistAdds Associated With This Song</h2>
 
+            <InlineSongEditor songId={song.id}/>
         </div>
     )
 }
