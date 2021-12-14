@@ -2,6 +2,9 @@
 ## Group 17, December 14, 2021
 ### Ananda Francis, Hannah Lauterwasser, Jessica Luo, and Kelly Ward
 
+### Source Code
+https://github.com/jannunzi/db-design-orm-assignment
+
 ### UML
 <img width="664" alt="Screen Shot 2021-12-05 at 10 36 36 PM" src="https://user-images.githubusercontent.com/82342205/145726177-0719a4ce-c62c-46d1-8a6a-e096402a253f.png">
 
